@@ -1,0 +1,47 @@
+# Local .terraform directories
+**/.terraform/*
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files (may contain secrets)
+*.tfvars
+*.tfvars.json
+
+# Ignore override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# Terraform plan files
+*.tfplan
+plan.out
+
+# Lock file (choose based on workflow)
+# Keep this if you want provider version consistency:
+# !.terraform.lock.hcl
+
+# Ignore lock file if you do NOT want it committed
+.terraform.lock.hcl
+
+# Sensitive variable files
+secrets.auto.tfvars
+*.auto.tfvars
+
+# Terraform test/cache artifacts
+.terraform.tfstate.lock.info
+
+# macOS / editor junk
+.DS_Store
+.vscode/
+.idea/
