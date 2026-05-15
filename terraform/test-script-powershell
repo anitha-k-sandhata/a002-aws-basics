@@ -1,0 +1,12 @@
+# TO CHECK IF WAF IS WORKING OR NOT, YOU CAN RUN THIS POWERSHELL SCRIPT IN YOUR LOCAL MACHINE.
+
+for ($i=0; $i -lt 150; $i++) {
+  try {
+    $response = Invoke-WebRequest -Uri "http://a002-demo-alb-520070970.ap-south-1.elb.amazonaws.com"
+    Write-Host "$i : $($response.StatusCode)"
+  }
+  catch {
+    Write-Host "$i : BLOCKED"
+  }
+}
+

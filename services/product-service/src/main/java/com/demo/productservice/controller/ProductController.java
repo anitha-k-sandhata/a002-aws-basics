@@ -1,5 +1,7 @@
 package com.demo.productservice.controller;
 
+import com.demo.productservice.model.Product;
+import com.demo.productservice.service.ProductService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,20 +11,14 @@ import java.util.Map;
 @RestController
 public class ProductController {
 
-    @GetMapping("/products")
-    public List<Map<String, Object>> getProducts() {
+    private final ProductService productService;
 
-        return List.of(
-                Map.of(
-                        "id", 1,
-                        "name", "Laptop",
-                        "price", 75000
-                ),
-                Map.of(
-                        "id", 2,
-                        "name", "Phone",
-                        "price", 30000
-                )
-        );
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
+    @GetMapping("/products")
+    public List<Product> getProducts() {
+        return productService.getProducts();
     }
 }
