@@ -1,10 +1,14 @@
 package com.demo.orderservice.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class ProductClientService {
+
+    @Value("${product.service.url}")
+    private String productServiceUrl;
 
     private final RestTemplate restTemplate;
 
@@ -13,8 +17,6 @@ public class ProductClientService {
     }
 
     public Object getProducts(){
-        String url = "http://product-service:8080/products";
-//        String url = "http://localhost:8080/products";
-        return restTemplate.getForObject(url, Object.class);
+        return restTemplate.getForObject(productServiceUrl, Object.class);
     }
 }

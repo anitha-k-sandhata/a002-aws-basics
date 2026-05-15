@@ -31,8 +31,11 @@ kubectl get pods
 kubectl get services
 ```
 
-If needed
+If issues of connectivity exists
 ```
+docker ps
+docker exec -it a002-microservices-demo-control-plane curl http://localhost:31044/orders
+
 kubectl port-forward service/order-service 8081:8081
 ```
 

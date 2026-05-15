@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: product-service
-          image: product-service:v1
+          image: product-service:v2
           imagePullPolicy: Never
 
           ports:

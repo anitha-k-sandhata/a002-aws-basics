@@ -3,3 +3,6 @@ server:
 spring:
   application:
     name: order-service
+product:
+    service:
+        url: http://localhost:8080/products
