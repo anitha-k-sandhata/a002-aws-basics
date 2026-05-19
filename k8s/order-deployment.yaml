@@ -28,4 +28,18 @@ spec:
                 configMapKeyRef:
                   name: order-service-config
                   key: PRODUCT_SERVICE_URL
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
 
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+
+            initialDelaySeconds: 10
+            periodSeconds: 5
