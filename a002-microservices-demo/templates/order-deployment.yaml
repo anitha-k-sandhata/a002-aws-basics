@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service
+spec:
+  replicas: {{ .Values.order.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: order-service
+
+  template:
+    metadata:
+      labels:
+        app: order-service
+
+    spec:
+      containers:
+        - name: order-service
+          image: {{ .Values.order.image }}
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: {{ .Values.order.servicePort }}
+          env:
+            - name: PRODUCT_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: order-service-config
+                  key: PRODUCT_SERVICE_URL
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port:  {{ .Values.order.servicePort }}
+
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port:  {{ .Values.order.servicePort }}
+
+            initialDelaySeconds: 10
+            periodSeconds: 5
